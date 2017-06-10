@@ -1,0 +1,12 @@
+/*.schedules,
+.add-train-panel {
+  width: 1200px;
+  margin: 0 auto;
+}*/
+
+.jumbotron {
+  /*background: url('../images/nyc-station.jpeg') no-repeat center center;*/
+  height: 220px;
+  color: white;
+  text-align: center;
+}
