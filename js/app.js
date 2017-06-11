@@ -24,7 +24,6 @@ database.ref().on("value", function(snapshot) {
   console.log("The read failed: " + errorObject.code);
 });
 
-/// for testing
 $("#add-info").on("click", function(event){
   event.preventDefault();
   $("#train-name-input").val("NJ Transit");
@@ -36,13 +35,11 @@ $("#add-info").on("click", function(event){
 $("#add-train").on("click", function(event) {
   event.preventDefault();
 
-  // if blank call them out
   inputName = $("#train-name-input").val().trim();
   inputDest = $("#destination-input").val().trim();
   inputTime = $("#time-input").val().trim();
   inputFreq = $("#frequency-input").val().trim();
 
-  // console.log(firstTime);
   database.ref().push({
     trainName: inputName,
     trainDest: inputDest,
@@ -115,131 +112,10 @@ database.ref().orderByChild("tMinutesTillTrain").on("child_added", function(chil
     $("tbody").append(
         "<tr><td>" + childSnapshot.val().trainName + "</td>" +
         "<td>" + childSnapshot.val().trainDest + "</td>" +
-
-        // var randomDate = "02/23/1999";
-        // var randomFormat = "MM/DD/YYYY";
-        // var convertedDate = moment(randomDate, randomFormat);
-        // console.log(moment(convertedDate).format("X"));
-        // console.log(moment(moment(randomDate, randomFormat)).format("X"));
         "<td>" + childSnapshot.val().trainFreq + "</td>" +
-        // next arrival is time -
-        // "<td>" + moment(nextTrain).format("h:hh A") + "</td><hr />" +
-        // "<td>" + nextTrain + " " + moment(moment(nextTrain).format("X")).format("hh:mm A") + "</td><hr />" +
         "<td>" + nextTrain + " " + "</td><hr />" +
-        // "<td>" + nextTrain +  "</td><hr />" +
-        // mins away should be now time - the mins arriving
         "<td>" + tMinutesTillTrain + "</td><hr /></tr>"
     );
-
-    // Handle the errors
 }, function(errorObject) {
     console.log("Errors handled: " + errorObject.code);
 });
-
-
-// // Assumptions
-// var tFrequency = 3;
-//
-// // Time is 3:30 AM
-// var firstTime = "03:30";
-//
-// // First Time (pushed back 1 year to make sure it comes before current time)
-// var firstTimeConverted = moment(firstTime, "hh:mm").subtract(1, "years");
-// console.log(firstTimeConverted);
-//
-// // Current Time
-// var currentTime = moment();
-// console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
-//
-// // Difference between the times
-// var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-// console.log("DIFFERENCE IN TIME: " + diffTime);
-//
-// // Time apart (remainder)
-// var tRemainder = diffTime % tFrequency;
-// console.log(tRemainder);
-//
-// // Minute Until Train
-// var tMinutesTillTrain = tFrequency - tRemainder;
-// console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
-//
-// // Next Train
-// var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-// console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
-
-
-
-// var randomDate = "02/23/1999";
-// var randomFormat = "MM/DD/YYYY";
-// var convertedDate = moment(randomDate, randomFormat);
-//
-// // Using scripts from moment.js write code below to complete each of the following.
-// // Console.log to confirm the code changes you made worked.
-//
-// // 1 ...to convert the randomDate into three other date formats
-// console.log(moment(convertedDate).format("MM/DD/YY"));
-// console.log(moment(convertedDate).format("MMM Do, YYYY hh:mm:ss"));
-// console.log(moment(convertedDate).format("X"));
-// console.log("----------------------------------------");
-//
-// // 2 ...to determine the time in years, months, days between today and the randomDate
-// console.log(moment(convertedDate).toNow());
-// console.log(moment(convertedDate).diff(moment(), "years"));
-// console.log(moment(convertedDate).diff(moment(), "months"));
-// console.log(moment(convertedDate).diff(moment(), "days"));
-// console.log("----------------------------------------");
-//
-// // 3 ...to determine the number of days between the randomDate and 02/14/2001
-// var newDate = moment("02/14/2001", randomFormat);
-// console.log(moment(convertedDate).diff(moment(newDate), "days"));
-//
-// // 4 ...to convert the randomDate to unix time (be sure to look up what unix time even is!!!)
-// console.log(moment(convertedDate).format("X"));
-// console.log("----------------------------------------");
-//
-// // 5 ...to determine what day of the week and what week of the year this randomDate falls on.
-// console.log(moment(convertedDate).format("DDD"));
-// console.log(moment(convertedDate).format("dddd"));
-
-
-
-
-
-
-// --------------------------------------------------------------
-// boilerplate
-// add firebase config
-// connect to firebase
-// get a refernce to the database via firebase
-// moment.unix(moment().format('X')).format("hh:mm");
-//$('#SOME_BUTTON_GOES_HERE').on('click', function() {
-  // collect the data from the html form, create variables to hold the data
-  // train name, .... etc
-  // when retrieving the "first train" data, make sure to parse it into a Unix timestamp
-
-  // `push` that data into firebase (assume that the `child_added` listener updates HTML)
-
-  // alert that train was added
-
-  // clear out our HTML form for the next input
-// });
-
-
-//something.on('child_added', function(childSnapshot) {
-  //console.log('the childSnapshot data', childSnapshot.val());
-
-  // create local variables to store the data from firebase
-
-// FIRST MAKE THE table row show up with empty strings for `timeInMinutes` / `tArrival `
-
-// THEN DO THIS MATH
-        // compute the difference in time from 'now' and the first train, store in var
-                  // i added moment().format("hh:mm") - moment().format("hh:mm")
-        // get the remainder of time after using `mod` with the frequency, store in var
-        // subtract the remainder from the frequency, store in var `timeInMinutes`
-        // format `timeInMinutes` ()"make pretty") and store in var `tArrival`
-
-// ITS OKAY TO JUST SHOW EMPTY STRINGS for `timeInMinutes` / `tArrival`
-  // append to our table of trains, inside the `tbody`, with a new row of the train data
-
-// });
